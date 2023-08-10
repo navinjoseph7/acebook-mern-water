@@ -10,16 +10,7 @@ const UsersController = require("../controllers/users")
 const PostsController = {
 
   Index: async(req, res) => {
-    const posts = await Post.find()
-    .populate({
-      path: 'user',
-      select: '-password -userid'
-    })
-    .populate({
-      path: 'comment',
-      select: '-user'
-    })
-    .exec();
+    const posts = await Post.find().populate(['user','comments']).exec();
     if (!posts){
       res.status(500);
     }
@@ -38,30 +29,25 @@ const PostsController = {
       if (!post) {
         return res.status(404).json({ message: "post not found!" });
       }
-      if (req.body.message !== "") {
-        const updatedMessage = req.body.message;
-    
-      
-        const userID = post.user;
+     
+      const updatedMessage = req.body.message;
+      const userID = post.user;
 
-        if (userID == req.user_id) {
-          post.message = updatedMessage;
-        } else {
-          return res.status(401).json({ message: "auth error" });
-        }
-
-        post.save((err) => {
-          if (err) {
-            res.status(500).json({ message: "error" });
-          }
-          const token = TokenGenerator.jsonwebtoken(req.user_id);
-          res
-            .status(200)
-            .json({ message: "Post updated successfully", token: token });
-        });
+      if (userID == req.user_id) {
+        post.message = updatedMessage;
       } else {
-        return res.status(400).json({message: "Cannot submit empty post"})
+        return res.status(401).json({ message: "auth error" });
       }
+
+      post.save((err) => {
+        if (err) {
+          res.status(500).json({ message: "error" });
+        }
+        const token = TokenGenerator.jsonwebtoken(req.user_id);
+        res
+          .status(200)
+          .json({ message: "Post updated successfully", token: token });
+      });
     });
   },
 
@@ -76,7 +62,7 @@ const PostsController = {
         post.message.includes(searchQuery)
       );
       res.status(200).json({ posts: filteredPosts });
-    }).populate(['user', 'comments']);
+    }).populate('user');
   },
 
   Create: async(req, res) => {
@@ -86,12 +72,12 @@ const PostsController = {
       message: req.body.message,
       user: req.user_id,
     });
-    
     post.save(async(err) => {
       if (err) {
-        return res.status(400).json({message: "Error"});
+       return res.status(400).json({message: "Error"});
       }
       const user = await User.findById(userid)
+      console.log("Post", post);
       const token = TokenGenerator.jsonwebtoken(req.user_id);
       const postId = post.id;
       res.status(201).json({ message: "OK", postId:postId, user: user, token: token,post: post });
