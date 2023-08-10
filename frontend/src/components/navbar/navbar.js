@@ -61,7 +61,6 @@ const NavBar = ({
     <div>
       {isLoggedIn ? (
         <>
-          <button onClick={myPosts}>My Posts</button>
           <button onClick={logout}>Logout</button>
         </>
       ) : (
