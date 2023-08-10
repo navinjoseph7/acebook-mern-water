@@ -27,9 +27,9 @@ const CommentsController = {
     }
   },
   Create: async (req, res) => {
+    const postId = req.params.id;
+    const userId = req.body.userid;
    
-    const postId = mongoose.Types.ObjectId(req.body.post);
-    
     try {
       
       if (!req.headers.authorization) {
@@ -37,20 +37,20 @@ const CommentsController = {
       }
 
       const post = await Post.findById(postId);
-      // console.log("Find by Id:", post);
+      console.log("Find by Id:", postId);
 
       if (!post) {
         return res.status(404).json({ error: 'Post not found.' });
       }
-      const user = await User.findById(req.body.user)
-      // Create a new comment and save it
+      const user = await User.findById(userId)
+      console.log(userId)
       const comment = new Comment({
               comment: req.body.comment,
-              user: req.body.user,
-              post: req.body.post,
+              user: postId,
+              post: userId,
               username: user.username
             });
-
+      console.log(comment)
       await comment.save();
      
       // Push the comment to the post's comments array
