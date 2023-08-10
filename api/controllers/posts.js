@@ -74,7 +74,7 @@ const PostsController = {
     });
     post.save(async(err) => {
       if (err) {
-        throw err;
+       return res.status(400).json({message: "Error"});
       }
       const user = await User.findById(userid)
       console.log("Post", post);
