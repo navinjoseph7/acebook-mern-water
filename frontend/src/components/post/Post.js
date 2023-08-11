@@ -248,14 +248,18 @@ const Post = ({ post, setPosts, newPosts, setSearchQuery }) => {
               {/* <Comments comments={commentList} /> */}
               <div className="comment-form">
                 <input
+
                   style={{ width: 'auto'}}
+
                   type="text"
                   placeholder="Add a comment..."
                   value={newComment}
                   onChange={handleCommentChange}
+
                   ></input>
                 <button onClick={handleAddComment}
                 style={{ width: 'auto', backgroundColor: 'black', color: 'white', border: 'solid'}}>Add Comment</button>
+
               </div>
               <div className="comments-box">
                 <ul className="comments-list">
