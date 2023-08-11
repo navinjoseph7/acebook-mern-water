@@ -219,7 +219,7 @@
 
 .post .comment-user {
   padding: 0px 5px;
-
+  width: auto;
   border-radius: 5px;
   margin: 0;
   flex: 1;
@@ -234,12 +234,12 @@
   color: white;
   text-align: left;
   align-items: center;
+  width: auto;
   font-size: 15px;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 5px;
   padding: 5px;
-  width: 70%;
-
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
   position: relative;
