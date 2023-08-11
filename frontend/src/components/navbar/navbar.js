@@ -61,7 +61,14 @@ const NavBar = ({
     <div>
       {isLoggedIn ? (
         <>
-          <button onClick={logout}>Logout</button>
+          <button onClick={logout}>Logout</button>      
+          <button onClick={posts}>Posts</button>
+      <input class='searchbar'
+        type="text"
+        placeholder="search"
+        onChange={(e) => handleOnChange(e)}
+      ></input>
+      <button onClick={handleSearch}>Search</button>  
         </>
       ) : (
         <>
@@ -69,13 +76,7 @@ const NavBar = ({
           <button onClick={login}>Login</button>
         </>
       )}
-      <button onClick={posts}>Posts</button>
-      <input class='searchbar'
-        type="text"
-        placeholder="search"
-        onChange={(e) => handleOnChange(e)}
-      ></input>
-      <button onClick={handleSearch}>Search</button>
+
     </div>
   );
 };
