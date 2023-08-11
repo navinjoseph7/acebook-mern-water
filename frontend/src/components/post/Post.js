@@ -6,7 +6,6 @@ import "./Post.css";
 
 const Post = ({ post, setPosts, newPosts, setSearchQuery }) => {
   // let comments = post.comments;
-  console.log({post})
   const [comments, setComments] = useState(post.comments);
   let commentList = comments?.map((comment) => (
     <p>
