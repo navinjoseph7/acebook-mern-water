@@ -37,27 +37,26 @@ const CommentsController = {
       }
 
       const post = await Post.findById(postId);
-      console.log("Find by Id:", postId);
 
       if (!post) {
         return res.status(404).json({ error: 'Post not found.' });
       }
       const user = await User.findById(userId)
-      console.log(userId)
+
       const comment = new Comment({
               comment: req.body.comment,
               user: postId,
               post: userId,
               username: user.username
             });
-      console.log(comment)
+
       await comment.save();
      
       // Push the comment to the post's comments array
       post.comments.push(comment);
 
       await post.save();
-      // console.log("See the whole post", post);
+
       const token = TokenGenerator.jsonwebtoken(req.user_id);
       return res.status(201).json({ comment: comment , message: 'Comment saved successfully.', token: token });
     } catch (err) {
