@@ -59,7 +59,7 @@ const CommentsController = {
       await post.save();
       // console.log("See the whole post", post);
       const token = TokenGenerator.jsonwebtoken(req.user_id);
-      return res.status(201).json({ message: 'Comment saved successfully.', token: token });
+      return res.status(201).json({ comment: comment , message: 'Comment saved successfully.', token: token });
     } catch (err) {
       return res.status(500).json({ error: 'An error occurred.' });
     }

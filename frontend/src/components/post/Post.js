@@ -6,6 +6,7 @@ import "./Post.css";
 
 const Post = ({ post, setPosts, newPosts, setSearchQuery }) => {
   // let comments = post.comments;
+  console.log({post})
   const [comments, setComments] = useState(post.comments);
   let commentList = comments?.map((comment) => (
     <p>
@@ -165,10 +166,12 @@ const Post = ({ post, setPosts, newPosts, setSearchQuery }) => {
     })
     .then(async response => {
       if(response.status === 201) {
-        let newComment = await response.json() 
-        console.log("roi was here: ", newComment)
-
-        setComments([...comments, newComment]);
+        let data1 = await response.json();
+        let latestusername = data1.comment.username;
+        console.log(latestusername)
+        let latestComment = {comment: newComment, username:latestusername}
+        console.log("roi was here: ", latestComment)
+        setComments([...comments, latestComment]);
         setNewComment('');
       }
     })
