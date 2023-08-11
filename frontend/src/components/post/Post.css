@@ -1,3 +1,5 @@
+
+
 .post {
   color: white;
   text-align: center;
@@ -173,20 +175,21 @@
     background-color: yellow;
   }
 
-  .post .comment-user {
+  .post .comment {
     display: flex;
-    align-items: center;
+    align-items: left;
     margin-bottom: 5px;
   }
 
   .post .comment-username-box {
+    top: 5;
+    align-items: center;
     background-color: rgb(255, 255, 255);
     padding: 2px;
-    text-align: right;
     border: 2px solid rgb(0, 0, 0);
     border-radius: 5px;
-    margin-right: 5px;
-    margin-left: auto;
+    height: 30px;
+
   }
   .post .comments-box {
     position: sticky;
@@ -205,16 +208,29 @@
     max-height: 150px;
     font-size: 15px;
     overflow-y: auto;
+    text-align: left;
   }
   
-  .post .comment {
-    
+  .post .comment-user {
     padding: 5px 10px;
     border-radius: 5px;
     margin: 5px 0;
-    text-align: right;
+    text-align: left;
     word-wrap: break-word;
     white-space: pre-wrap;
+  }
+  .post comment-content {
+    color: white;
+    text-align: left;
+    align-items: center;
+    font-size: 5px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 15px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
   }
 
   @media screen and (max-width: 768px) {
@@ -222,3 +238,4 @@
     font-size: 14px;
     padding: 4px 8px;
   }}
+

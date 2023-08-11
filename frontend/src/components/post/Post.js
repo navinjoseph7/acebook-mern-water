@@ -22,11 +22,7 @@ const Post = ({ post, setPosts, newPosts, setSearchQuery }) => {
   const length = post?.likes?.length;
   const [editedMessage, setEditedMessage] = useState(post.message);
   const [likesCount, setLikesCount] = useState(length);
-
-  useEffect(() => {
-    console.log('COMMENTS GOT CHANGED');
-    console.log({comments})
-  }, [comments])
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleLike = async () => {
     try {
@@ -88,7 +84,6 @@ const Post = ({ post, setPosts, newPosts, setSearchQuery }) => {
               let UpdatedPosts = data1.posts;
               setPosts(UpdatedPosts);
               setSearchQuery(UpdatedPosts);
-              console.log(UpdatedPosts)
             } else {
             }
           });
@@ -133,10 +128,13 @@ const Post = ({ post, setPosts, newPosts, setSearchQuery }) => {
             setPosts(UpdatedPosts);
             setSearchQuery(UpdatedPosts);
           } else {
+            setErrorMessage('Invalid message!');
+    
           }
         });
       }
     } catch (error) {
+      setErrorMessage('Invalid message!');
       console.error(error);
     }
   };
@@ -233,6 +231,7 @@ const Post = ({ post, setPosts, newPosts, setSearchQuery }) => {
             )}
           </button>
 
+
           {showEditButton && !isEditing && (
             <button
               className="edit-button"
@@ -267,6 +266,8 @@ const Post = ({ post, setPosts, newPosts, setSearchQuery }) => {
                 <span className="button-icon">🗑️</span>
               </button>
             )}
+            {errorMessage && (
+            <p className="error"> {errorMessage} </p>)}
           </div>
         </article>
       );

@@ -21,21 +21,23 @@ const NavBar = ({
   const signUp = () => {
     navigate("/signup");
   };
+
+  const logout = () => {
+    window.localStorage.removeItem("token")
+    window.localStorage.removeItem("username")
+    navigate('/login')
+
+    handleLogout()
+  }
+
+  const login = () => {
+    handleLogin()
+    navigate('/login')
+  }
+
   const posts = () => {
-  
-    if (token) {
-      fetch("/posts", {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then(async (data) => {
-          window.localStorage.setItem("token", data.token);
-          setToken(window.localStorage.getItem("token"));
-          setPosts(data.posts);
-        });
-    }
+    setSearchQuery(undefined)
+    navigate("/posts")
   };
   const myPosts = () => {
     navigate("/myPosts");
@@ -59,22 +61,22 @@ const NavBar = ({
     <div>
       {isLoggedIn ? (
         <>
-          <button onClick={myPosts}>My Posts</button>
-          <button onClick={handleLogout}>Logout</button>
-        </>
-      ) : (
-        <>
-          <button onClick={signUp}>Sign Up</button>
-          <button onClick={handleLogin}>Login</button>
-        </>
-      )}
-      <button onClick={posts}>Posts</button>
-      <input
+          <button onClick={logout}>Logout</button>      
+          <button onClick={posts}>Posts</button>
+      <input class='searchbar'
         type="text"
         placeholder="search"
         onChange={(e) => handleOnChange(e)}
       ></input>
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSearch}>Search</button>  
+        </>
+      ) : (
+        <>
+          <button onClick={signUp}>Sign Up</button>
+          <button onClick={login}>Login</button>
+        </>
+      )}
+
     </div>
   );
 };

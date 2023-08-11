@@ -62,7 +62,7 @@ const PostsController = {
         post.message.includes(searchQuery)
       );
       res.status(200).json({ posts: filteredPosts });
-    }).populate(['user', 'comments']);
+    }).populate('user');
   },
 
   Create: async(req, res) => {
@@ -74,7 +74,7 @@ const PostsController = {
     });
     post.save(async(err) => {
       if (err) {
-        throw err;
+       return res.status(400).json({message: "Error"});
       }
       const user = await User.findById(userid)
       console.log("Post", post);
