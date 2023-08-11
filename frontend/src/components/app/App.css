@@ -55,7 +55,7 @@ button:hover {
 
 p {
   color: white;
-  text-align: center;
+  text-align: left;
   font-size: 20px;
 }
 
@@ -75,7 +75,7 @@ h1 {
 div {
   color: white;
   text-align: center;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 20px;
   padding: 10px 25px;
 }
