@@ -1,16 +1,12 @@
 import React from 'react';
 
-
-const Comment = ({comment}) => {
-    
-    return(
-        <article data-cy="comment" key={comment._id}>
-        <h2>{comment.username}:</h2>
-        <p>{comment.comment}</p>
-        </article>
-    )
-}
-
+const Comment = ({comment }) => {
+  return (
+    <div className="comment">
+      <p>{comment}</p>
+    </div>
+  );
+};
 
 export default Comment;
 

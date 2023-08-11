@@ -27,9 +27,9 @@ const CommentsController = {
     }
   },
   Create: async (req, res) => {
+    const postId = req.params.id;
+    const userId = req.body.userid;
    
-    const postId = mongoose.Types.ObjectId(req.body.post);
-    
     try {
       
       if (!req.headers.authorization) {
@@ -37,17 +37,16 @@ const CommentsController = {
       }
 
       const post = await Post.findById(postId);
-      // console.log("Find by Id:", post);
 
       if (!post) {
         return res.status(404).json({ error: 'Post not found.' });
       }
-      const user = await User.findById(req.body.user)
-      // Create a new comment and save it
+      const user = await User.findById(userId)
+
       const comment = new Comment({
               comment: req.body.comment,
-              user: req.body.user,
-              post: req.body.post,
+              user: postId,
+              post: userId,
               username: user.username
             });
 
@@ -57,9 +56,9 @@ const CommentsController = {
       post.comments.push(comment);
 
       await post.save();
-      // console.log("See the whole post", post);
+
       const token = TokenGenerator.jsonwebtoken(req.user_id);
-      return res.status(201).json({ message: 'Comment saved successfully.', token: token });
+      return res.status(201).json({ comment: comment , message: 'Comment saved successfully.', token: token });
     } catch (err) {
       return res.status(500).json({ error: 'An error occurred.' });
     }

@@ -53,7 +53,7 @@ const Feed = ({ navigate, searchQuery, setSearchQuery }) => {
       .then(async response => {
         if(response.status === 201) {
           let data = await response.json()
-          let newPosts = [...posts, { likes: [], message: message, _id: data.postId, user: data.user, }]
+          let newPosts = [...posts, { comments:[] ,likes: [], message: message, _id: data.postId, user: data.user }]
           setPosts(newPosts)
           setSearchQuery(newPosts);
           setMessage("")
