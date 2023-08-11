@@ -1,5 +1,3 @@
-
-
 .post {
   color: white;
   text-align: center;
@@ -28,214 +26,247 @@
   background-color: #4a4a4a;
   cursor: not-allowed;
 }
-  .username-box {
-    position: absolute;
-    top: 5;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-    padding: 2px;
-    border: 2px solid rgb(0, 0, 0);
-    border-radius: 5px;
-  }
+.username-box {
+  position: absolute;
+  top: 5;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  padding: 2px;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 5px;
+}
 
-  .username {
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-    font-size: 12px;
-  }
+.username {
+  color: rgb(0, 0, 0);
+  margin: 0;
+  flex: 1;
+  font-weight: bold;
+  font-size: 12px;
+}
 
-  .post .post-box {
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 2px solid black;
-    padding: 10px;
-    color: black;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    border-radius: 15px;
-  }
-  
+.post .post-box {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid black;
+  padding: 10px;
+  color: black;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  border-radius: 15px;
+}
 
-  .post .post-message {
-    display: inline-block;
-    vertical-align: middle;
-  }
+.post .post-message {
+  display: inline-block;
+  vertical-align: middle;
+}
 
-  .post .like-button {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.5s;
-  }
+.post .like-button {
+  position: absolute;
+  /* bottom: 10px; */
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.5s;
+}
 
-  .post .like-count {
-    display: inline-block;
-    color: #000000;
-    padding: 2px 5px;
-    border-radius: 5px;
-    background-color: #ffffff;
-    position: absolute;
-    bottom: 0px;
-    right: -10px;
-    font-size: 10px;
-    line-height: 1;
-  }
-  
-  .post .like-button:hover {
-    background-color: yellow;
-  }
+.post .like-count {
+  display: inline-block;
+  color: #000000;
+  padding: 2px 5px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  position: absolute;
+  bottom: 0px;
+  right: -10px;
+  font-size: 10px;
+  line-height: 1;
+}
 
-  .post .delete-button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.5s;
-  }
+.post .like-button:hover {
+  background-color: yellow;
+}
 
-  .post .delete-button .button-icon {
-    display: inline-block;
-    position: absolute;
-    bottom: 5px;
-    right: 7.8px;
-    font-size: 14px;
-    vertical-align: middle;
-  }
+.post .delete-button {
+  position: absolute;
+  /* bottom: 10px; */
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.5s;
+}
 
-  .post .delete-button:hover {
-    background-color: yellow;
-  }
+.post .delete-button .button-icon {
+  display: inline-block;
+  /* position: absolute;
+  bottom: 5px;
+  right: 7.8px;
+  font-size: 14px;
+  vertical-align: middle; */
+}
 
-  .post .edit-button {
-    position: absolute;
-    bottom: 10px;
-    right: 50px;
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.5s;
-  }
+.post .delete-button:hover {
+  background-color: yellow;
+}
 
-  .post .edit-button .button-icon {
-    display: inline-block;
-    position: absolute;
-    bottom: 5px;
-    right: 7.8px;
-    font-size: 14px;
-    vertical-align: middle;
-  }
-  
-  .post .edit-button:hover {
-    background-color: yellow;
-  }
+.post .edit-button {
+  position: absolute;
+  /* bottom: 10px; */
+  right: 50px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  transition: background-color 0.5s;
+}
 
-  .post .edit-form {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .post .edit-form textarea {
-    width: 100%;
-    padding: 8px;
-    border: 2px solid #000000;
-    border-radius: 5px;
-    resize: vertical;
-  }
+.post .edit-button .button-icon {
+  display: inline-block;
+  /* position: absolute;
+  bottom: 5px;
+  right: 1.8px;
+  font-size: 14px;
+  vertical-align: middle; */
+}
 
-  .post .update-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 40px;
-    right: 30px;
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    border: 2px solid rgb(0, 0, 0);
-    font-size: 14px;
-    vertical-align: middle;
-  }
-  
-  .post .update-button:hover {
-    background-color: yellow;
-  }
+.post .edit-button:hover {
+  background-color: yellow;
+}
 
-  .post .comment {
-    display: flex;
-    align-items: left;
-    margin-bottom: 5px;
-  }
+.post .edit-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
 
-  .post .comment-username-box {
-    top: 5;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-    padding: 2px;
-    border: 2px solid rgb(0, 0, 0);
-    border-radius: 5px;
-    height: 30px;
+.post .edit-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  resize: vertical;
+}
 
-  }
-  .post .comments-box {
-    position: sticky;
-    margin-top: 5px;
-    padding: 0px;
-    border-radius: 15px;
-    background-color: rgba(66, 66, 66, 0.5);
-    border: 2px solid #ffffff;
-    width: auto;
-  }
-  
-  .post .comments-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-height: 150px;
-    font-size: 15px;
-    overflow-y: auto;
-    text-align: left;
-  }
-  
-  .post .comment-user {
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin: 5px 0;
-    text-align: left;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-  }
-  .post comment-content {
-    color: white;
-    text-align: left;
-    align-items: center;
-    font-size: 5px;
-    border: 2px solid rgb(255, 255, 255);
-    border-radius: 15px;
-    padding: 15px;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-  }
+.post .update-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  /* bottom: 40px; */
+  right: 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: 2px solid rgb(0, 0, 0);
+  font-size: 14px;
+  vertical-align: middle;
+}
 
-  @media screen and (max-width: 768px) {
+.post .update-button:hover {
+  background-color: yellow;
+}
+
+.post .comment {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.post .comment-username-box {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  padding: 0px;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 7px;
+  height: 30px;
+}
+.post .comments-box {
+  position: sticky;
+  margin-top: 5px;
+  padding: 0px;
+  border-radius: 15px;
+  background-color: rgba(66, 66, 66, 0.5);
+  border: 2px solid #ffffff;
+  width: auto;
+}
+
+.post .comments-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 150px;
+  font-size: 15px;
+  overflow-y: auto;
+  /* text-align: left; */
+  display: flex;
+  flex-direction: column;
+}
+
+.post .comment-user {
+  padding: 0px 5px;
+  border-radius: 5px;
+  margin: 0;
+  flex: 1;
+  text-align: left;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+.post .comment-content {
+  position: absolute;
+  top: 10px;
+  color: white;
+  text-align: left;
+  align-items: center;
+  font-size: 15px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 5px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.comment-form .input {
+  border: 3px solid rgb(0, 0, 0);
+  text-align: center;
+  font-size: 25px;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 12px;
+}
+
+.comment-form .input [type="submit"] {
+  width: auto;
+  background-color: #010403;
+  box-sizing: border-box;
+  border: 2px solid rgb(255, 255, 255);
+  color: white;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.comment-form .input [type="submit"]:hover {
+  background-color: rgb(15, 37, 182);
+  transition: 0.5s;
+}
+
+.commen @media screen and (max-width: 768px) {
   .button[data-cy="delete-button"] {
     font-size: 14px;
     padding: 4px 8px;
-  }}
-
+  }
+}

@@ -13,8 +13,8 @@ const Post = ({ post, setPosts, newPosts, setSearchQuery }) => {
       <Comment comment={comment} key={comment._id} />{" "}
     </p>
   ));
-  const [newComment, setNewComment] = useState('');
-  
+  const [newComment, setNewComment] = useState("");
+
   const userid = window.localStorage.getItem("userid");
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [liked, setLiked] = useState(post?.likes?.includes(userid));
@@ -53,8 +53,6 @@ const Post = ({ post, setPosts, newPosts, setSearchQuery }) => {
           } else {
           }
         });
-
-        
       }
     } catch (error) {
       console.error(error);
@@ -127,19 +125,17 @@ const Post = ({ post, setPosts, newPosts, setSearchQuery }) => {
             setPosts(UpdatedPosts);
             setSearchQuery(UpdatedPosts);
           } else {
-            setErrorMessage('Invalid message!');
-    
+            setErrorMessage("Invalid message!");
           }
         });
       }
     } catch (error) {
-      setErrorMessage('Invalid message!');
+      setErrorMessage("Invalid message!");
       console.error(error);
     }
   };
 
   const showEditButton = post.user._id === userid;
-
 
   const showDeleteButton = post.user._id === userid;
 
@@ -147,36 +143,36 @@ const Post = ({ post, setPosts, newPosts, setSearchQuery }) => {
     setNewComment(event.target.value);
   };
 
-  const handleAddComment = async() => {
+  const handleAddComment = async () => {
     // Make a fetch call to your backend API to create a new comment
     await fetch(`/comments/${post._id}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-         // Assuming you have a postId field in your comment schema
+        // Assuming you have a postId field in your comment schema
         comment: newComment,
-        userid : userid
+        userid: userid,
       }),
     })
-    .then(async response => {
-      if(response.status === 201) {
-        let data1 = await response.json();
-        let latestusername = data1.comment.username;
-        console.log(latestusername)
-        let latestComment = {comment: newComment, username:latestusername}
-        console.log("roi was here: ", latestComment)
-        setComments([...comments, latestComment]);
-        setNewComment('');
-      }
-    })
+      .then(async (response) => {
+        if (response.status === 201) {
+          let data1 = await response.json();
+          let latestusername = data1.comment.username;
+          console.log(latestusername);
+          let latestComment = { comment: newComment, username: latestusername };
+          console.log("roi was here: ", latestComment);
+          setComments([...comments, latestComment]);
+          setNewComment("");
+        }
+      })
       .catch((error) => {
-        console.error('Error adding comment:', error);
+        console.error("Error adding comment:", error);
       });
   };
-  
+
   if (post.user === null) {
     return (
       <article data-cy="post">
@@ -194,82 +190,84 @@ const Post = ({ post, setPosts, newPosts, setSearchQuery }) => {
           <p>
             <div className="post-box">
               <span className="post-message">{post.message}</span>
+              <button
+                className="like-button"
+                onClick={handleLike}
+                disabled={liked}
+                title={liked ? "You liked this post" : "Like this post"}
+              >
+                {liked ? "🤍" : "❤️"}
+                {likesCount > 0 && (
+                  <span className="like-count">{likesCount}</span>
+                )}
+              </button>
+
+              {showEditButton && !isEditing && (
+                <button
+                  className="edit-button"
+                  onClick={handleEditClick}
+                  title="Edit this post"
+                >
+                  <span className="button-icon">✏️</span>
+                </button>
+              )}
+
+              {isEditing ? (
+                <div className="edit-form">
+                  <textarea
+                    value={editedMessage}
+                    onChange={(e) => setEditedMessage(e.target.value)}
+                    rows={3}
+                  />
+                  <button
+                    onClick={handleUpdateClick}
+                    className="update-button"
+                    title="Save changes"
+                  >
+                    ✅
+                  </button>
+                </div>
+              ) : null}
+
+              {showDeleteButton && (
+                <button
+                  data-cy="delete-button"
+                  className="delete-button"
+                  onClick={() => handleDelete(post._id, token, setPosts)}
+                  title="Delete this post"
+                >
+                  <span className="button-icon">🗑️</span>
+                </button>
+              )}
+              {errorMessage && <p className="error"> {errorMessage} </p>}
             </div>
           </p>
-          {/* {commentList} */}
-          {comments && 
-          <div>
-            <Comments comments={commentList} />
-            <div className="comment-form">
-              <input
-                type="text"
-                placeholder="Add a comment..."
-                value={newComment}
-                onChange={handleCommentChange}
-              />
-              <button onClick={handleAddComment}>Add Comment</button>
+
+          {comments && (
+            <div>
+              {/* <Comments comments={commentList} /> */}
+              <div className="comment-form">
+                <input
+                  type="text"
+                  placeholder="Add a comment..."
+                  value={newComment}
+                  onChange={handleCommentChange}
+                />
+                <br></br>
+                <button onClick={handleAddComment}>Add Comment</button>
+              </div>
+              <div className="comments-box">
+                <ul className="comments-list">
+                  {comments.map((comment, index) => {
+                    return <CommentInPost comment={comment} index={index} />;
+                  })}
+                </ul>
+              </div>
             </div>
-            <div className="comments-box">
-            <ul className="comments-list">
-              {comments.map((comment, index) => {
-                return <CommentInPost comment={comment} index={index} />
-              })}
-            </ul>
-          </div>
-          </div>
-        }
-        <button
-          className="like-button"
-          onClick={handleLike}
-          disabled={liked}
-          title={liked ? "You liked this post" : "Like this post"}
-        >
-        {liked ? "🤍" : "❤️"}
-        {likesCount > 0 && (
-          <span className="like-count">{likesCount}</span>
-            )}
-          </button>
-
-
-          {showEditButton && !isEditing && (
-            <button
-              className="edit-button"
-              onClick={handleEditClick}
-              title="Edit this post"
-            >
-              <span className="button-icon">✏️</span>
-            </button>
           )}
-
-          {isEditing ? (
-            <div className="edit-form">
-              <textarea
-                value={editedMessage}
-                onChange={(e) => setEditedMessage(e.target.value)}
-                rows={3}
-              />
-              <button 
-              onClick={handleUpdateClick} 
-              className="update-button"
-              title="Save changes">✅</button>
-            </div>
-          ) : null}
-
-            {showDeleteButton && (
-              <button
-                data-cy="delete-button"
-                className="delete-button"
-                onClick={() => handleDelete(post._id, token, setPosts)}
-                title="Delete this post"
-              >
-                <span className="button-icon">🗑️</span>
-              </button>
-            )}
-            {errorMessage && (
-            <p className="error"> {errorMessage} </p>)}
-          </div>
-        </article>
-      );
+        </div>
+      </article>
+    );
   }
 };
 
