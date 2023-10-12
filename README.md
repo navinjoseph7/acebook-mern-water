@@ -1,149 +1,193 @@
 # Acebook
 
-In this project, you are tasked with working on an existing application. A significant part of the challenge will be to familiarise yourself with the codebase you've inherited, as you work to **improve and extend** it.
+In this project our team of 6 were given a partially written MERN stack with basic functionality already in existence. It covered the signup, login and logout functionality.
 
-## Documentation
+The primary challenge was to familiarise ourselves with an unknown codebase and a tech stack we had very limited experience with. Once we had got an understanding of the code we had to improve and add to the code base, sticking to TDD and Agile as we worked.
 
-[More documentation of the codebase and its architecture can be found here.](./DOCUMENTATION.md) It's recommended you all read this _after making sure the whole setup below worked for everyone_. Then work together on a diagram describing how the application works.
+### Contents
 
-[A template Miro board for your diagrams can be found here.](https://miro.com/app/board/uXjVPqNzFfc=/?share_link_id=360271550320) Make sure your validate your diagrams with your coach.
+- [Technologies](#technologies)
+- [Demonstration](#demonstration)
+- [Planning](#planning)
+  - [Sprints](#sprints)
+  - [MVP User Stories](#mvp-user-stories)
+  - [Stretch User Stories](#stretch-user-stories)
+  - [Wireframes](#wireframes)
+- [Features](#features)
+  - [MVP](#mvp)
+  - [Stretch](#stretch)
+- [To run locally](#to-run-locally)
+- [Testing](#testing)
+- [Learnings](#learnings)
+- [Future Actions](#future-actions)
 
-## Card wall
+## Technologies
 
-Trell Board: https://trello.com/b/zqLFDJ52/acebook-team-water%F0%9F%92%A7
+<div align="center">
+	<code><img height="45" src="https://user-images.githubusercontent.com/25181517/192158954-f88b5814-d510-4564-b285-dff7d6400dad.png" alt="HTML" title="HTML" /></code>
+	<code><img height="45" src="https://user-images.githubusercontent.com/25181517/183898674-75a4a1b1-f960-4ea9-abcb-637170a00a75.png" alt="CSS" title="CSS" /></code>
+	<code><img height="45" src="https://user-images.githubusercontent.com/25181517/117447155-6a868a00-af3d-11eb-9cfe-245df15c9f3f.png" alt="JavaScript" title="JavaScript" /></code>
+	<code><img height="45" src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png" alt="React" title="React" /></code>
+	<code><img height="45" src="https://user-images.githubusercontent.com/25181517/183568594-85e280a7-0d7e-4d1a-9028-c8c2209e073c.png" alt="Node.js" title="Node.js" /></code>
+	<code><img height="45" src="https://user-images.githubusercontent.com/25181517/183859966-a3462d8d-1bc7-4880-b353-e2cbed900ed6.png" alt="Express" title="Express" /></code>
+	<code><img height="45" src="https://user-images.githubusercontent.com/25181517/182884177-d48a8579-2cd0-447a-b9a6-ffc7cb02560e.png" alt="mongoDB" title="mongoDB" /></code>
+</div>
 
-## Quickstart
+## Demonstration
 
-### Install Node.js
+Here's a short demonstration covering some of the functionality
 
-1. Install Node Version Manager (NVM)
-   ```
-   brew install nvm
-   ```
-   Then follow the instructions to update your `~/.bash_profile`.
-2. Open a new terminal
-3. Install the latest version of [Node.js](https://nodejs.org/en/), currently `18.1.0`.
-   ```
-   nvm install 18
-   ```
+![](./images/demo.gif)
 
-### Set up your project
+## Planning
 
-1. Fork this repository
-2. Rename your fork to `acebook-<team name>`
-3. Clone your fork to your local machine
-4. Install Node.js dependencies for both the `frontend` and `api` directories.
-   ```
-   ; cd api
-   ; npm install
-   ; cd ../frontend
-   ; npm install
-   ```
+When starting this project it was our first time working with a full MERN stack. While we had some experience with each technology on their own, this was the first time we would pull them all together.
 
-> You might get warning messages about the installed dependencies at this point. You can ignore them, as long as the installation process doesn't fail. If the setup fails at this point, don't wait for too long and reach out to your coach.
+Before attempting to plan our workflow, or next steps, we spent several hours on the first day purely just investigating the code. We divided up into pairs, with each pair focusing on a specific aspect of the code and any associated part of the MERN stack it used.
 
-5. Install an ESLint plugin for your editor. For example: [`linter-eslint`](https://github.com/AtomLinter/linter-eslint) for Atom.
-6. Install MongoDB
-   ```
-   brew tap mongodb/brew
-   brew install mongodb-community@5.0
-   ```
-   *Note:* If you see a message that says `If you need to have mongodb-community@5.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
-7. Start MongoDB
-   ```
-   brew services start mongodb-community@5.0
-   ```
+Once we all felt comfortable that we had a good understanding of our areas we gathered as a team to share what we had learned so all the team became familiar with all the code.
 
-### How to run the server and use the app (as a human)
+As a team we found it very helpful to visually represent the structure of the code when knowledge sharing.
 
-1. Start the server application (in the `api` directory)
+![](./images/backend.png)
 
-  **Note the use of an environment variable for the JWT secret**
+### Sprints
 
-   ```
-   ; cd api
-   ; JWT_SECRET=f6d278bb34e1d0e146a80b16ec254c05 npm start
-   ```
-2. Start the front end application (in the `frontend` directory)
+As we only had 10 days for this project we settled on 3 sprints. The objective of sprint 1 was to finish our MVP. Then in sprints 2 and 3 we could implement our stretch goals.
 
-  In a new terminal session...
+Each feature we implemented was split down further into smaller tickets to help build out the code in smaller increments, helping to make merging pull requests easier.
 
-  ```
-  ; cd frontend
-  ; npm start
-  ```
+### MVP User Stories
 
-You should now be able to open your browser and go to `http://localhost:3000/signup` to create a new user.
+```
+As a user I want to be able to
+Create an account, providing a username, email and password
 
-Then, after signing up, you should be able to log in by going to `http://localhost:3000/login`.
+As a user I want to be able to
+Log in
 
-After logging in, you won't see much but you can create posts using PostMan and they should then show up in the browser if you refresh the page.
+As a user I want to be able to
+Log out
 
-### How to run automated tests
+As a user when I log in
+I want to see posts by my friends in reverse-chronological order
 
-The automated tests run by sending actual HTTP requests to the API. Therefore, before anything, you'll need to start the backend server in test mode (so that it connects to the test DB).
+As a user once logged in
+I want to be able to write a post (that can be seen by my friends)
 
-**Note the use of an environment variable for the JWT secret**
-
-```bash
-# Make sure you're in the api directory
-; cd api
-
-; JWT_SECRET=f6d278bb34e1d0e146a80b16ec254c05 npm run start:test
 ```
 
-You should leave this running in a terminal.
+### Stretch User Stories
 
-Then, you can either run tests for the backend or the frontend following the steps below. 
+```
+As a user
+I want to be able to leave a comment on a friends post
 
-#### Running tests for the backend
+As a user
+I want to be able to delete a post I have made
 
-Run the tests in a new terminal session:
+As a user
+I want to be able to edit a post I have made
 
-```bash
-# Make sure you're in the api directory
-; cd api
+As a user
+I want to be able to view my friend’s profile, and all their recent posts
 
-; JWT_SECRET=f6d278bb34e1d0e146a80b16ec254c05 npm run test
+As a user I want to be able to
+Add other users to my friends list
+
+As a user
+I can delete friends who betray me
+
+As a user
+I can block friends who dump me
+
+As a user
+I can poke friends who ghost me
+
+As a user
+I can upload photos
+
+As a user
+I can upload videos
+
+As a user
+I want to be able to like a post
 ```
 
-####  Running tests for the frontend
 
-Start the front end in a new terminal session
+## Features
 
-```bash
-# Make sure you're in the frontend directory
-; cd frontend
+### MVP
 
-; JWT_SECRET=f6d278bb34e1d0e146a80b16ec254c05 npm start
+The user can:
+
+- Sign up, create an account and log in/out
+- See all posts
+- Create a post
+
+### Stretch
+
+The user can:
+
+- Comment on a friends post
+- Add friends
+- View their own, and other's, profile page
+- Edit a post
+- Delete a post
+- Like a post
+
+## To run locally
+
+1. Clone the repo locally
+2. Start the backend server
+
+```
+cd api
+JWT_SECRET=SUPER_SECRET npm start
 ```
 
-Then run the tests in a new terminal session
+3. Start the frontend in a new terminal window
 
-```bash
-# Make sure you're in the frontend directory
-; cd frontend
-
-; JWT_SECRET=f6d278bb34e1d0e146a80b16ec254c05 npm run test
+```
+npm start build
 ```
 
-## MongoDB Connection Errors?
+## Testing
 
-Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips which might help resolve such issues.
+While we did put an emphasis on testing driving all of our code, we found with the challenge of learning a new tech stack and the tight time frame, our normally stringent testing suffered.
 
-- Check that MongoDB is installed using `mongo --version`
-- Check that it's running using `brew services list`
+For our backend testing we used jest. To run these tests:
 
-If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
+1. Start the backend server
 
+```
+cd api
+JWT_SECRET=SUPER_SECRET npm start
+```
 
+2. In a new terminal window run
 
-<!-- BEGIN GENERATED SECTION DO NOT EDIT -->
+```
+jest --coverage
+```
 
----
+For our frontend testing we used Cypress. This was our first time using Cypress so it was an intense learning curve but Cypress's UI and intuitive design really helped. To run Cypress testing:
 
-**How was this resource?**  
-[😫](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Facebook-mern-template&prefill_File=README.md&prefill_Sentiment=😫) [😕](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Facebook-mern-template&prefill_File=README.md&prefill_Sentiment=😕) [😐](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Facebook-mern-template&prefill_File=README.md&prefill_Sentiment=😐) [🙂](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Facebook-mern-template&prefill_File=README.md&prefill_Sentiment=🙂) [😀](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Facebook-mern-template&prefill_File=README.md&prefill_Sentiment=😀)  
-Click an emoji to tell us.
+```
+cd frontend
+npm run cypress:open
+```
 
-<!-- END GENERATED SECTION DO NOT EDIT -->
+## Learnings
+
+As a team it was a great experience, getting to work with so many different people on a new tech stack. While it was dauting to start with, our methodical approach at the start, knowledge sharing and being process driven throughout really helped.
+
+Going forward the key takeaway is how to adjust our sprint planning. We didn't break down the tickets into small enough tasks. This sometimes resulted in backlogs and rather than small, frequent pull requests, we had to combine a lot of different branches at the end of the project. In turn, this had an impact on our time available to focus on core ways of working like TDD.
+
+Overall we learnt a huge amount and very quickly became confident utilisng a MERN stack. Most importantly we also learnt how to structure our team and processes going forward.
+
+## Future Actions
+
+- Deploy the site
+- TDD the comments functionality
+- Improve the functionality of the profile page
